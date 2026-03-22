@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journal - My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Syncopate:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #fafafa;
+            --deep-blue: #1b4965;
+            --soft-red: #e63946;
+            --sun-yellow: #ffb703;
+            --text-dark: #2b2d42;
+            --light-text: #666;
+        }
+
+        body {
+            background-color: #2a2a2a;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #444;
+            background-color: #1a1a1a;
+        }
+
+        .logo {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 8px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #bbb;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--soft-red);
+        }
+
+        h1 {
+            color: white;
+        }
+
+        .hero-section {
+            background-color: #2a2a2a;
+        }
+
+        .hero-content h2, .hero-content h3 {
+            color: white;
+        }
+
+        .hero-content .date, .info-label {
+            color: #999;
+        }
+
+        .hero-content p {
+            color: #bbb;
+        }
+
+        .modal-title {
+            color: var(--text-dark);
+        }
+
+        .section-header h2, .section-title {
+            color: white;
+        }
+
+        /* HEADER PRINCIPAL */
+        .header-main {
+            background-color: #2a2a2a;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .journal-label {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--soft-red);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* SEÇÃO PRINCIPAL COM FOTO E INFO */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 40px;
+            align-items: center;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 6px solid #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+        }
+
+        .hero-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .hero-thumbnails img {
+            width: 50px;
+            height: 65px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            aspect-ratio: 3 / 4;
+        }
+
+        .hero-thumbnails img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .hero-thumbnails img:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-content h2 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #999;
+        }
+
+        .hero-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content .date {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .hero-text {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--light-text);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag {
+            padding: 8px 0;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* SEÇÃO TOGETHER DAY */
+        .together-section {
+            padding: 60px 40px;
+            background-color: #2a2a2a;
+            border-top: 1px solid #444;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .together-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .together-image {
+            position: relative;
+        }
+
+        .together-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 6px solid #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .together-image img:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+        }
+
+        .together-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .together-subheading {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .together-items {
+            list-style: none;
+        }
+
+        .together-items li {
+            font-size: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* SEÇÃO MEMORIES */
+        .memories-section {
+            padding: 60px 40px;
+            background-color: #2a2a2a;
+            border-top: 1px solid #444;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .count {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--soft-red);
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .memory-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            border: 5px solid #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .memory-item:hover img {
+            transform: translateY(-12px);
+            box-shadow: 0 18px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .memory-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .memory-item:hover .memory-label {
+            color: var(--soft-red);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 30px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .modal-subtitle {
+            font-size: 12px;
+            color: var(--soft-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .modal-tag {
+            background-color: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            border: 1px solid #ddd;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--soft-red);
+        }
+
+        /* SEÇÃO DE ENTRETENIMENTO */
+        .entertainment-section {
+            padding: 60px 40px;
+            background-color: #2a2a2a;
+            border-top: 1px solid #444;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .game-card {
+            border: 1px solid #444;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background-color: #1a1a1a;
+        }
+
+        .game-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+            border-color: var(--soft-red);
+            background-color: #222;
+        }
+
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .game-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .game-card p {
+            font-size: 12px;
+            color: var(--light-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* QUIZ MODAL */
+        .quiz-content {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .quiz-question {
+            margin-bottom: 25px;
+        }
+
+        .quiz-question h4 {
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+
+        .quiz-option:hover {
+            background-color: var(--soft-red);
+            color: white;
+            border-color: var(--soft-red);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--soft-red);
+            color: white;
+            border-color: var(--soft-red);
+        }
+
+        .quiz-button {
+            background-color: var(--deep-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-button:hover {
+            background-color: var(--soft-red);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .result-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* MEMORY GAME */
+        .memory-game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background-color: var(--deep-blue);
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .memory-card:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background-color: var(--sun-yellow);
+        }
+
+        .memory-card.matched {
+            background-color: #90EE90;
+            cursor: default;
+        }
+
+        .game-score {
+            font-size: 14px;
+            margin: 15px 0;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                font-size: 9px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+                gap: 30px;
+            }
+
+            .hero-image img {
+                border: 4px solid #fff;
+                max-height: 350px;
+            }
+
+            .hero-thumbnails {
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            .hero-thumbnails img {
+                width: 40px;
+                height: 50px;
+                border: 2px solid #fff;
+            }
+
+            .hero-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .hero-text {
+                font-size: 12px;
+                text-align: left;
+            }
+
+            .tags {
+                gap: 8px;
+                font-size: 10px;
+            }
+
+            .together-section {
+                padding: 30px 15px;
+            }
+
+            .together-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .together-image img {
+                border: 4px solid #fff;
+                max-height: 320px;
+            }
+
+            .together-subheading {
+                font-size: 9px;
+            }
+
+            .together-items li {
+                font-size: 11px;
+                padding: 6px 0;
+            }
+
+            .memories-section {
+                padding: 30px 15px;
+            }
+
+            .memories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .memory-item img {
+                border: 4px solid #fff;
+            }
+
+            .memory-label {
+                font-size: 10px;
+                margin-top: 8px;
+            }
+
+            .section-header h2 {
+                font-size: 12px;
+            }
+
+            .count {
+                font-size: 14px;
+            }
+
+            .entertainment-section {
+                padding: 30px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .game-card {
+                padding: 20px;
+            }
+
+            .game-icon {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .game-card h3 {
+                font-size: 1rem;
+            }
+
+            .game-card p {
+                font-size: 11px;
+            }
+
+            .memory-game-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin: 15px 0;
+            }
+
+            .memory-card {
+                font-size: 1.5rem;
+            }
+
+            .quiz-option {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+            }
+
+            .modal-image {
+                height: 300px;
+            }
+
+            .modal-info {
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .modal-subtitle {
+                font-size: 11px;
+            }
+
+            .modal-text {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            footer {
+                padding: 20px;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 10px;
+            }
+
+            .logo-sub {
+                font-size: 7px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 8px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-main {
+                padding: 25px 15px;
+            }
+
+            .journal-label {
+                font-size: 8px;
+                letter-spacing: 2px;
+            }
+
+            .hero-section {
+                padding: 15px 10px;
+                gap: 20px;
+            }
+
+            .hero-image img {
+                border: 3px solid #fff;
+                max-height: 300px;
+            }
+
+            .hero-thumbnails {
+                gap: 6px;
+            }
+
+            .hero-thumbnails img {
+                width: 35px;
+                height: 45px;
+                border: 2px solid #fff;
+            }
+
+            .hero-content h2 {
+                font-size: 10px;
+            }
+
+            .hero-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .hero-text {
+                font-size: 11px;
+            }
+
+            .section-title {
+                font-size: 11px;
+            }
+
+            .together-section {
+                padding: 20px 10px;
+            }
+
+            .together-image img {
+                border: 3px solid #fff;
+                max-height: 280px;
+            }
+
+            .memories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .memory-item img {
+                border: 3px solid #fff;
+            }
+
+            .entertainment-section {
+                padding: 20px 10px;
+            }
+
+            .games-grid {
+                gap: 15px;
+            }
+
+            .game-card {
+                padding: 15px;
+            }
+
+            .game-icon {
+                font-size: 1.8rem;
+            }
+
+            .game-card h3 {
+                font-size: 0.9rem;
+            }
+
+            .memory-game-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .modal-content {
+                margin: 30% auto;
+            }
+        }
+
+        /* RODAPÉ */
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #444;
+            background-color: #1a1a1a;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGAÇÃO -->
+    <nav>
+        <div class="logo">
+            NOSSA HISTÓRIA
+            <span class="logo-sub">MATHEUS + VICTORIA</span>
+        </div>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">SOBRE</a></li>
+            <li><a href="#story">HISTÓRIA</a></li>
+            <li><a href="#memories">MEMÓRIAS</a></li>
+            <li><a href="#fun">DIVERSÃO</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER PRINCIPAL -->
+    <header class="header-main">
+        <div class="journal-label">Nossa Jornada Juntos</div>
+        <h1>Victoria</h1>
+    </header>
+
+    <!-- SEÇÃO HERO -->
+    <section class="hero-section">
+        <div class="hero-image">
+            <img src="amor1.jpeg" alt="Main photo" id="mainImage">
+            <div class="hero-thumbnails">
+                <img src="amor1.jpeg" alt="thumb1" onclick="changeImage('amor1.jpeg')">
+                <img src="amor2.jpeg" alt="thumb2" onclick="changeImage('amor2.jpeg')">
+                <img src="amor3.jpeg" alt="thumb3" onclick="changeImage('amor3.jpeg')">
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h2>NOSSA HISTÓRIA</h2>
+            <h3>Um domingo especial</h3>
+            <div class="date">Juntos através das dificuldades</div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Localização</div>
+                    <div class="info-value">Brasil - Nosso Lugar</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Relacionamento</div>
+                    <div class="info-value">Amor Verdadeiro</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Força</div>
+                    <div class="info-value">Juntos Somos Mais</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Valor</div>
+                    <div class="info-value">Infinito</div>
+                </div>
+            </div>
+
+            <p class="hero-text">
+                Victoria, nos momentos difíceis que enfrentamos, você foi minha razão de seguir em frente. Seu riso, seu abraço, sua coragem me dão saúde e esperança todos os dias. Cada momento ao seu lado é uma benção que renova minha vontade de estar sempre aqui para você. Te amo mais a cada amanhecer.
+            </p>
+
+            <div class="tags">
+                <span class="tag">💪 FORÇA JUNTOS</span>
+                <span class="tag">💕 TE AMO</span>
+                <span class="tag">🌟 SEMPRE JUNTOS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO TOGETHER DAY -->
+    <section class="together-section">
+        <h2 class="section-title">NESTE DOMINGO COM VOCÊ</h2>
+
+        <div class="together-grid">
+            <div class="together-image">
+                <img src="amor4.jpeg" alt="Together moment">
+            </div>
+            <div class="together-content">
+                <h3 class="together-subheading">Razões para Continuar</h3>
+                <ul class="together-items">
+                    <li>💪 Sua coragem me inspira</li>
+                    <li>💕 Seu amor me cura</li>
+                    <li>😊 Seu riso me alegra</li>
+                    <li>🤝 Juntos somos invencíveis</li>
+                    <li>🌅 Cada dia com você é novo</li>
+                    <li>❤️ Você é minha saúde</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO MEMORIES -->
+    <section class="memories-section">
+        <div class="section-header">
+            <h2>NOSSAS MEMÓRIAS</h2>
+            <div class="count">06</div>
+        </div>
+
+        <div class="memories-grid">
+            <div class="memory-item" onclick="openMemory(1)">
+                <img src="amor1.jpeg" alt="Memory 1">
+                <p class="memory-label">💕 Victoria Para Sempre</p>
+            </div>
+            <div class="memory-item" onclick="openMemory(2)">
+                <img src="amor2.jpeg" alt="Memory 2">
+                <p class="memory-label">😊 Juntos Na Chuva</p>
+            </div>
+            <div class="memory-item" onclick="openMemory(3)">
+                <img src="amor3.jpeg" alt="Memory 3">
+                <p class="memory-label">🌟 Dia Lindo Com Você</p>
+            </div>
+            <div class="memory-item" onclick="openMemory(4)">
+                <img src="amor5.jpg" alt="Memory 4">
+                <p class="memory-label">💕 Nossa História</p>
+            </div>
+            <div class="memory-item" onclick="openMemory(5)">
+                <img src="amor6.jpg" alt="Memory 5">
+                <p class="memory-label">🌈 Você É Minha Saúde</p>
+            </div>
+            <div class="memory-item" onclick="openMemory(6)">
+                <img src="amor7.jpg" alt="Memory 6">
+                <p class="memory-label">❤️ Eternamente Juntos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAIS DE MEMÓRIAS -->
+    <div id="memoryModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(1)">&times;</span>
+            <img src="amor1.jpeg" alt="Forever Memory" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">💕 Seu Sorriso</div>
+                <h2 class="modal-title">Victoria Para Sempre</h2>
+                <p class="modal-text">
+                    NOs momentos difíceis, seu sorriso foi minha luz. Mesmo quando tudo parecia escuro, você continuava acreditando em nós. Essa foto captura exatamente por que te amo tanto.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">Amor</span>
+                    <span class="modal-tag">Esperança</span>
+                    <span class="modal-tag">Futuro</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(2)">&times;</span>
+            <img src="amor2.jpeg" alt="Special Moment" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">😊 Juntos Na Chuva</div>
+                <h2 class="modal-title">Especial Momento</h2>
+                <p class="modal-text">
+                    Mesmo nos dias chuvosos e difíceis, estar com você torna tudo melhor. Sua companhia é meu refugío, meu conforto, minha força para continuar.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">Conforto</span>
+                    <span class="modal-tag">Proxmidade</span>
+                    <span class="modal-tag">Confiança</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(3)">&times;</span>
+            <img src="amor3.jpeg" alt="Beautiful Day" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">🌟 Dia Lindo Com Você</div>
+                <h2 class="modal-title">Beleza Pura</h2>
+                <p class="modal-text">
+                    Cada dia ao seu lado é uma página nova no nosso livro. Você me faz querer ser uma pessoa melhor, mais forte, mais capaz de enfrentar o mundo. Sua beleza vai muito além do físico.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">Beleza</span>
+                    <span class="modal-tag">Dia Perfeito</span>
+                    <span class="modal-tag">Inspire</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(4)">&times;</span>
+            <img src="amor5.jpg" alt="Our Story" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">💕 Nossa História</div>
+                <h2 class="modal-title">Escrito No Coração</h2>
+                <p class="modal-text">
+                    Toda história de amor tem capítulos difíceis. Este é um deles. Mas é nesses momentos que descobrimos o que realmente importa. Você importa mais que tudo, Victoria.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">História</span>
+                    <span class="modal-tag">Coração</span>
+                    <span class="modal-tag">Nós</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(5)">&times;</span>
+            <img src="amor6.jpg" alt="Together" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">🎀 Saúde do Ser</div>
+                <h2 class="modal-title">Você É Minha Saúde</h2>
+                <p class="modal-text">
+                    Não é só amor, é saúde. Estar com você me dá paz mental, emocional e espiritual. Você é o melão que me fazfaz melhorar a cada dia.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">Saúde</span>
+                    <span class="modal-tag">Paz</span>
+                    <span class="modal-tag">Bem-estar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemory(6)">&times;</span>
+            <img src="amor7.jpg" alt="Always" class="modal-image">
+            <div class="modal-info">
+                <div class="modal-subtitle">❤️ Sempre</div>
+                <h2 class="modal-title">Eternamente Juntos</h2>
+                <p class="modal-text">
+                    Sempre aqui, sempre juntos, sempre amor. Esta é minha promessa para você, Victoria. Nos momentos fáceis e difíceis, estarei ao seu lado. Voce merece tudo de bom neste mundo.
+                </p>
+                <div class="modal-tags">
+                    <span class="modal-tag">Sempre</span>
+                    <span class="modal-tag">Para Sempre</span>
+                    <span class="modal-tag">Amor Eterno</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE ENTRETENIMENTO -->
+    <section class="entertainment-section" id="fun">
+        <h2 class="section-title">DIVERTIMENTOS & JOGOS</h2>
+
+        <div class="games-grid">
+            <div class="game-card" onclick="openQuiz()">
+                <div class="game-icon">📝</div>
+                <h3>Quiz Nosso</h3>
+                <p>Teste seus conhecimentos sobre nossa história</p>
+            </div>
+            <div class="game-card" onclick="openMemoryGame()">
+                <div class="game-icon">🎮</div>
+                <h3>Jogo da Memória</h3>
+                <p>Encontre os pares e relembre os momentos</p>
+            </div>
+            <div class="game-card" onclick="sendLoveMessage()">
+                <div class="game-icon">💌</div>
+                <h3>Mensagem de Amor</h3>
+                <p>Escreva uma mensagem especial para Victoria</p>
+            </div>
+            <div class="game-card" onclick="openLoveQuotes()">
+                <div class="game-icon">💬</div>
+                <h3>Frases Especiais</h3>
+                <p>Leia frases de amor e inspiração</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL QUIZ -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <div class="modal-info">
+                <div class="modal-subtitle">📝 Teste Seus Conhecimentos</div>
+                <h2 class="modal-title">Quiz Nosso</h2>
+                <div class="quiz-content" id="quizContent">
+                    <div class="quiz-question">
+                        <h4>1. Qual é o nome dela?</h4>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, 'victoria')">Victoria</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Vitória</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Vanessa</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Vivian</div>
+                        </div>
+                    </div>
+                    <div class="quiz-question">
+                        <h4>2. Como é estar com ela nos momentos difíceis?</h4>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, 'saude')">Terapia e Saúde</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Difícil e chato</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Complicado</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Sem sentido</div>
+                        </div>
+                    </div>
+                    <div class="quiz-question">
+                        <h4>3. Qual é o maior valor dela para você?</h4>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, 'coragem')">Coragem e Força</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Beleza física</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Dinheiro</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Popularidade</div>
+                        </div>
+                    </div>
+                    <button class="quiz-button" onclick="finishQuiz()">Ver Resultado</button>
+                </div>
+                <div id="quizResult" class="quiz-result" style="display: none;">
+                    <div class="result-icon">❤️</div>
+                    <h3>Você acertou!</h3>
+                    <p>Sabe exatamente o quanto Victoria significa para você!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MEMORY GAME -->
+    <div id="memoryGameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMemoryGame()">&times;</span>
+            <div class="modal-info">
+                <div class="modal-subtitle">🎮 Jogo da Memória</div>
+                <h2 class="modal-title">Encontre os Pares</h2>
+                <div class="game-score">Tentativas: <span id="attempts">0</span> | Acertos: <span id="matches">0</span>/6</div>
+                <div class="memory-game-grid" id="memoryGameGrid"></div>
+                <button class="quiz-button" onclick="resetMemoryGame()">Recomeçar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Matheus ❤ Victoria | Juntos Sempre | Cada Dia é uma Bênção</p>
+    </footer>
+
+    <script>
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+
+        function openMemory(id) {
+            document.getElementById(`memoryModal${id}`).style.display = 'block';
+        }
+
+        function closeMemory(id) {
+            document.getElementById(`memoryModal${id}`).style.display = 'none';
+        }
+
+        // FUNÇÕES DE QUIZ
+        function openQuiz() {
+            document.getElementById('quizModal').style.display = 'block';
+        }
+
+        function closeQuiz() {
+            document.getElementById('quizModal').style.display = 'none';
+        }
+
+        function selectAnswer(element, answer) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function finishQuiz() {
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+        }
+
+        // FUNÇÕES DE MEMORY GAME
+        const memoryCards = ['❤️', '💕', '💖', '💗', '💓', '💞', '❤️', '💕', '💖', '💗', '💓', '💞'];
+        let firstCard = null;
+        let secondCard = null;
+        let matches = 0;
+        let attempts = 0;
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memoryGameGrid');
+            grid.innerHTML = '';
+            const shuffled = [...memoryCards].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach((symbol, index) => {
+                const button = document.createElement('button');
+                button.className = 'memory-card';
+                button.textContent = '';
+                button.dataset.symbol = symbol;
+                button.dataset.matched = 'false';
+                button.onclick = () => flipCard(button);
+                grid.appendChild(button);
+            });
+
+            matches = 0;
+            attempts = 0;
+            document.getElementById('matches').textContent = '0';
+            document.getElementById('attempts').textContent = '0';
+        }
+
+        function flipCard(card) {
+            if (card.dataset.matched === 'true' || card.classList.contains('flipped')) return;
+
+            card.classList.add('flipped');
+            card.textContent = card.dataset.symbol;
+
+            if (!firstCard) {
+                firstCard = card;
+            } else if (!secondCard) {
+                secondCard = card;
+                attempts++;
+                document.getElementById('attempts').textContent = attempts;
+
+                if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+                    firstCard.dataset.matched = 'true';
+                    secondCard.dataset.matched = 'true';
+                    firstCard.classList.add('matched');
+                    secondCard.classList.add('matched');
+                    matches++;
+                    document.getElementById('matches').textContent = matches;
+
+                    if (matches === 6) {
+                        setTimeout(() => {
+                            alert('Parabéns! Você ganhou! 🎉');
+                            initMemoryGame();
+                        }, 500);
+                    }
+
+                    firstCard = null;
+                    secondCard = null;
+                } else {
+                    setTimeout(() => {
+                        firstCard.classList.remove('flipped');
+                        secondCard.classList.remove('flipped');
+                        firstCard.textContent = '';
+                        secondCard.textContent = '';
+                        firstCard = null;
+                        secondCard = null;
+                    }, 600);
+                }
+            }
+        }
+
+        function openMemoryGame() {
+            document.getElementById('memoryGameModal').style.display = 'block';
+            setTimeout(initMemoryGame, 100);
+        }
+
+        function closeMemoryGame() {
+            document.getElementById('memoryGameModal').style.display = 'none';
+        }
+
+        function resetMemoryGame() {
+            initMemoryGame();
+        }
+
+        function sendLoveMessage() {
+            const message = prompt('Escreva uma mensagem de amor para Victoria:', 'Te amo muito victoria!');
+            if (message) {
+                alert(`Mensagem registrada: "${message}"\n\n💌 Envie para Victoria quando estiver pronto!`);
+            }
+        }
+
+        function openLoveQuotes() {
+            const quotes = [
+                '"Você é minha saúde, meu refúgio, minha razão de existir." - Matheus',
+                '"Nos momentos difíceis, você é minha força." - Matheus',
+                '"Seu sorriso ilumina meus dias mais escuros." - Matheus',
+                '"Estar com você é estar em casa." - Matheus',
+                '"Você merece toda felicidade do mundo." - Matheus',
+                '"Te amo mais a cada amanhecer." - Matheus'
+            ];
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            alert(quote);
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                for (let i = 1; i <= 6; i++) {
+                    document.getElementById(`memoryModal${i}`).style.display = 'none';
+                }
+                document.getElementById('quizModal').style.display = 'none';
+                document.getElementById('memoryGameModal').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
